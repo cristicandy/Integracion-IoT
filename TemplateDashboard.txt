@@ -1,0 +1,59 @@
+<style>
+    .nr-dashboard-template h1 {
+    font-size: .875em;
+    font-weight: normal;
+    margin-top: .1;
+    margin-bottom: .1;
+    }
+    
+    .nr-dashboard-template h2 {
+    font-size: 3.5em;
+    text-indent: .5em;
+    margin-top: 0;
+    margin-bottom: 0;
+    }
+    
+    h5 {
+        font-family:"Courier New", Courier, monospace;
+        text-align: center;
+        font-size: .6em;
+        margin-top: .2em;
+        margin-bottom: 0;
+    }
+    
+   
+   div {
+    max-width: 100%;
+   }
+   
+   a:link {
+    color: white; 
+    background-color: transparent; 
+    text-decoration: none;
+}
+
+a:visited {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+#{{msg.topic}}-div {
+    visibility: {{msg.show}};
+   }  
+</style>
+<div id = "{{msg.topic}}-div">
+<h1>SG/Concentration: {{msg.payload.densidad}} (pre-calibrated)</h1>
+<h2>{{msg.payload.densidad}}</h2>
+<div style="background: red; height:40px; width:100%;"></div>
+<h1>Brix: {{msg.payload.brix | number:2}} (pre-calibrated)</h1>
+<h2>{{msg.payload.brix | number:2}}ºBrix</h2>
+<div style="background: red; height:10px; width:{{(msg.payload.densidad - 0.990)/0.00130}}%;"></div>
+<h1>Alcohol Aprox: {{msg.payload.alcohol | number:2}} Vol.%(pre-calibrated)</h1>
+<h2>{{msg.payload.alcohol | number:2}} %</h2>
+<div style="background: red; height:10px; width:{{(msg.payload.densidad - 0.990)/0.00130}}%;"></div>
+<h1>Temperature: {{(msg.payload.temperatura-32) *5/9 | number:1}} (pre-calibrated)</h1>
+<h2>{{(msg.payload.temperatura-32) *5/9 | number:1}} ºC</h2>
+<div style="background: red; height:10px; width:{{(msg.payload.densidad - 0.990)/0.00130}}%;"></div>
+<h5>Received {{msg.payload.timestamp}} seconds ago</h5>
+</div>
